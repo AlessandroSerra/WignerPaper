@@ -60,6 +60,8 @@ def _process_single_frame_numba_jit(
     sum_T_wag_exc, count_T_wag_exc = 0.0, 0
     sum_T_rock_norm, count_T_rock_norm = 0.0, 0
     sum_T_rock_exc, count_T_rock_exc = 0.0, 0
+    sum_T_cm_norm, count_T_cm_norm = 0.0, 0
+    sum_T_cm_exc, count_T_cm_exc = 0.0, 0
 
     for mol_idx in range(molecule_indices.shape[0]):
         mol_atom_idxs = molecule_indices[mol_idx]
@@ -285,6 +287,17 @@ def _process_single_frame_numba_jit(
                         sum_T_wag_norm += T_wag
                         count_T_wag_norm += 1
 
+                # Center of Mass Temperature
+                V_cm_mag_sq = np.dot(V_cm, V_cm)
+                K_cm = 0.5 * M_total * V_cm_mag_sq
+                T_cm = K_cm / (1.5 * kb_const)
+                if mol_is_excited:
+                    sum_T_cm_exc += T_cm
+                    count_T_cm_exc += 1
+                else:
+                    sum_T_cm_norm += T_cm
+                    count_T_cm_norm += 1
+
     # Hydrogen Bond
     num_oxygens = len(oxygen_indices_for_hb)
     for i_o in range(num_oxygens):
@@ -322,6 +335,8 @@ def _process_single_frame_numba_jit(
         sum_T_wag_norm / count_T_wag_norm if count_T_wag_norm > 0 else np.nan,
         sum_T_rock_exc / count_T_rock_exc if count_T_rock_exc > 0 else np.nan,
         sum_T_rock_norm / count_T_rock_norm if count_T_rock_norm > 0 else np.nan,
+        sum_T_cm_norm / count_T_cm_norm if count_T_cm_norm > 0 else np.nan,
+        sum_T_cm_exc / count_T_cm_exc if count_T_cm_exc > 0 else np.nan,
     )
 
 
@@ -364,7 +379,7 @@ def _parallel_worker_from_arrays(args_tuple: Tuple) -> Tuple[int, np.ndarray]:
         return frame_idx, np.array(temps_tuple, dtype=np.float64)
     except Exception as e:
         print(f"Errore nel worker per il frame {args_tuple[0]}: {e}")
-        return args_tuple[0], np.full(15, np.nan, dtype=np.float64)
+        return args_tuple[0], np.full(17, np.nan, dtype=np.float64)
 
 
 # ==================================================================
@@ -441,7 +456,7 @@ def analyzeTEMPS(
         )
 
     # --- Esecuzione Parallela ---
-    results_array = np.full((n_frames, 15), np.nan, dtype=np.float64)
+    results_array = np.full((n_frames, 17), np.nan, dtype=np.float64)
 
     with ProcessPoolExecutor(max_workers=num_workers) as executor:
         try:
@@ -479,6 +494,8 @@ def analyzeTEMPS(
         "libr_wag_norm": results_array[:, 12],
         "libr_rock_exc": results_array[:, 13],
         "libr_rock_norm": results_array[:, 14],
+        "cm_translation_norm": results_array[:, 15],
+        "cm_translation_exc": results_array[:, 16],
     }
 
     return returned_data
