@@ -1,0 +1,36 @@
+In the following, we analyze the non-equilibrium response induced by the vibrational excitation through three complementary observables: the vibrational density of states (VDOS), the time-resolved modal temperatures, and the structural evolution of the hydrogen-bond network as characterized by radial distribution functions (RDFs). We first examine the VDOS to verify the effective population of the targeted vibrational states, before addressing the subsequent energy redistribution and its structural consequences.\\
+To resolve the transient spectral evolution following excitation, the VDOS was evaluated over sliding temporal windows of fixed duration, allowing us to monitor the redistribution of vibrational energy as a function of time. Since we are dealing with non-equilibrium trajectories, particular care was taken in selecting the window length used to compute the velocity autocorrelation function (VACF). Convergence tests showed that the VACF decays to negligible values within approximately $100\,\mathrm{fs}$ for all phases considered. Accordingly, a window length of $100\,\mathrm{fs}$ was adopted for the VDOS evaluation, ensuring that the correlation function was fully contained within each time segment.\\
+
+While the time-resolved VDOS provides direct spectral information on the excited vibrational states, its temporal resolution is intrinsically limited by the finite window length required for a stable Fourier transform. To achieve a more refined characterization of the energy redistribution dynamics, we therefore analyze the time evolution of modal temperatures.\\
+The modal temperatures were computed by decomposing the kinetic energy into
+physically distinct dynamical contributions, including O–H stretching, H–O–H
+bending, librational motion, hydrogen-bond related motion, and center-of-mass
+translational degrees of freedom. For each subset of degrees of freedom, an
+effective temperature was defined through the classical equipartition
+relation.\\
+More specifically, for each molecule, the instantaneous kinetic energy was
+projected onto internal and collective coordinates defined at the molecular
+level.
+
+The stretching contribution was obtained by projecting the relative O–H velocities onto the corresponding bond directions, and the associated modal temperature was defined as
+\begin{equation}
+	T_{\mathrm{stretch}} = \frac{\mu_{OH} v_{\parallel}^2}{k_B},
+\end{equation}
+where $\mu_{OH}$ is the reduced mass of the O–H pair and $v_{\parallel}$ is the component of the relative velocity along the bond axis.
+
+The bending contribution was evaluated in terms of the time derivative of the H–O–H angle $\theta$. Defining the bending coordinate as $\phi=\theta/2$, the associated kinetic energy reads
+\begin{equation}
+	K_{\mathrm{bend}} = \frac{1}{2} I_{\theta} \left( \frac{\dot{\theta}}{2} \right)^2,
+\end{equation}
+with $I_{\theta} = \sum_i m_{H_i} r_{OH,i}^2$ the effective moment of inertia of the two O–H arms. The corresponding modal temperature follows from equipartition as
+\begin{equation}
+	T_{\mathrm{bend}} = \frac{I_{\theta}\dot{\theta}^2}{4 k_B}.
+\end{equation}
+
+Librational contributions were obtained by treating each molecule as an instantaneous rigid body and projecting the angular momentum onto its principal axes. For each rotational degree of freedom $\alpha$, the associated temperature was defined as
+\begin{equation}
+	T_{\alpha} = \frac{L_{\alpha}^2}{I_{\alpha} k_B},
+\end{equation}
+where $L_{\alpha}$ and $I_{\alpha}$ denote the angular momentum component and the corresponding principal moment of inertia.
+
+Finally, the center-of-mass and hydrogen-bond contributions were computed from the relative translational velocities of the corresponding atomic pairs using the same equipartition-based definition.
