@@ -1,7 +1,10 @@
 \documentclass[reprint,amsmath,amssymb,aps]{revtex4-2}
 
 \usepackage{graphicx}
-\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{caption}
+% \captionsetup[figure]{justification=justified}   
+\captionsetup[figure]{justification=centerfirst} % unica che funziona   
 \usepackage{dcolumn}
 \usepackage{bm}
 \usepackage{amsmath}
@@ -39,14 +42,14 @@
 \maketitle
 
 \section{Introduction}
-\input{Sections/Intro}
+\input{sections/Intro}
 
 \section{Computational Details}
-\input{Sections/Compu}
+\input{sections/Compu}
 
 
 \section{Results and Discussion}
-\input{Sections/Results}
+\input{sections/Results}
 
 
 \section{Conclusions}
