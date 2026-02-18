@@ -102,36 +102,26 @@ For each phase, the entire equilibration–excitation–production workflow was 
 \begin{figure*}[p]
 	\centering
 	\subfloat[]{%
-		\includegraphics[width=\columnwidth]{figures/water_10perc_temps_fit.pdf}
-		\label{fig:temps_fit_water_a}
+		\includegraphics[width=0.9\textwidth]{figures/water_10perc_temps_all.pdf}
+		\label{fig:temps_all_water_a}
 	}
 	\hfill
 	\subfloat[]{%
-		\includegraphics[width=0.9\columnwidth]{figures/water_10perc_tamps_tau.pdf}
-		\label{fig:temps_fit_water_a}
+		\includegraphics[width=0.91\textwidth]{figures/iceIh_10perc_temps_all.pdf}
+		\label{fig:temps_all_iceIh_b}
 	}
 	\hfill
 	\subfloat[]{%
-		\includegraphics[width=\columnwidth]{figures/iceIh_10perc_temps_fit.pdf}
-		\label{fig:temps_fit_iceIh_b}
+		\includegraphics[width=0.9\textwidth]{figures/iceIX_10perc_temps_all.pdf}
+		\label{fig:temps_all_iceIX_c}
 	}
-	\hfill
-	\subfloat[]{%
-		\includegraphics[width=0.9\columnwidth]{figures/iceIh_10perc_tamps_tau.pdf}
-		\label{fig:temps_fit_iceIh_b}
+	\caption{
+		Time-resolved modal temperatures and corresponding characteristic coupling times under 10\% vibrational excitation for (a) liquid water, (b) ice Ih, and (c) ice IX.
+		Each panel reports the temporal evolution of the modal temperatures associated with O–H stretching, H–O–H bending, librational motion, hydrogen-bond degrees of freedom, and center-of-mass translation, together with exponential fits used to extract relaxation times.
+		The inset summary in each panel displays the characteristic intra- and intermolecular coupling times obtained from the fits.
+		Across all phases, a clear separation between ultrafast intramolecular relaxation and slower intermolecular thermalization is observed.
 	}
-	\hfill
-	\subfloat[]{%
-		\includegraphics[width=\columnwidth]{figures/iceIX_10perc_temps_fit.pdf}
-		\label{fig:temps_fit_iceIX_c}
-	}\hfill
-	\subfloat[]{%
-		\includegraphics[width=0.9\columnwidth]{figures/iceIX_10perc_tamps_tau.pdf}
-		\label{fig:temps_fit_iceIX_c}
-	}
-	\caption{Time-resolved modal temperatures and extracted characteristic coupling times under 10\% vibrational excitation for liquid water, ice Ih, and ice IX.
-		Panels (a), (c), and (e) report the temporal evolution of the modal temperatures associated with O–H stretching, H–O–H bending, librational motion, hydrogen-bond degrees of freedom, and center-of-mass translation, together with exponential fits used to determine relaxation times. Panels (b), (d), and (f) summarize the corresponding coupling times for each dynamical sector, highlighting the hierarchy of intramolecular and intermolecular energy redistribution processes in the three phases. The rapid decay of the excited stretching mode is followed by a sequential redistribution of energy toward bending, librational, and intermolecular degrees of freedom, ultimately approaching the equilibrium temperature.}
-	\label{fig:temps_fit}
+	\label{fig:temps_all}
 \end{figure*}
 
 
@@ -175,6 +165,44 @@ Finally, the center-of-mass and hydrogen-bond contributions were computed from
 the relative translational velocities of the corresponding atomic pairs using
 the same equipartition-based definition.\\
 
+\begin{figure}[t]
+	\begin{center}
+		\includegraphics[width=0.95\columnwidth]{figures/HB-trestati.png}
+	\end{center}
+	\caption{
+	Schematic representation of the relaxation pathway following selective
+	excitation of hydrogen-bonded O–H vibrations. The initially excited state
+	$|1\rangle$ undergoes rapid coupling toward a metastable intermediate state
+	$|0^{*}\rangle$ on a characteristic timescale $\tau_1$, corresponding to the
+	first energy transfer process. Subsequently, the system relaxes toward the final
+	equilibrated state $|0'\rangle$ on a slower timescale $\tau_2$, which represent
+	the new ground state.}
+	\label{fig:HB-trestati}
+\end{figure}
+
+
+The temporal evolution of each modal temperature was analyzed by fitting the data to a bi-exponential model of the form
+
+\begin{equation}
+	T(t) = T_{\infty} + A_1 e^{-t/\tau_1} + A_2 e^{-t/\tau_2},
+\end{equation}
+
+where $T_{\infty}$ denotes the long-time equilibrium temperature, while $\tau_1$
+and $\tau_2$ represent the characteristic short and long relaxation times,
+respectively. The shorter timescale $\tau_1$ captures the initial coupling process
+(intramolecular or intermolecular energy transfer), whereas $\tau_2$ describes
+the subsequent thermalization of the considered mode.\\
+The relaxation dynamics can be rationalized in terms of a three-state model
+involving a metastable intermediate state, as schematically illustrated in
+Fig.~\ref{fig:HB-trestati}. Within this picture, $\tau_1$ corresponds to the
+population transfer from the initially excited state toward the metastable
+configuration, while $\tau_2$ characterizes the slower relaxation toward global
+equilibrium.\\
+For certain dynamical sectors, the separation between the two timescales is not
+clearly resolved within the simulation window. In such cases, a
+single-exponential fit was employed and only the dominant relaxation time was
+retained.\\
+
 We begin with liquid water. Figure~\ref{fig:vdos_water_a} shows the time-resolved VDOS for excited and non-excited molecules. Immediately after excitation, a pronounced enhancement of spectral intensity appears in the O–H stretching region, confirming the effective population of the targeted vibrational states.
 Notably, the initial peak is centered at a slightly lower frequency than the
 maximum of the equilibrium stretching band, reflecting the fundamental frequency
@@ -190,19 +218,18 @@ where the initial enhancement in the stretching region is followed by a
 progressive redistribution of spectral weight toward lower-frequency modes.
 However, compared to liquid water, the spectral features in the crystalline
 phases remain sharper, reflecting the more constrained hydrogen-bond network and
-increases long range structural order.\\
-
-
+increases long-range structural order.\\
 
 While the VDOS provides a clear spectral signature of the excitation, its temporal resolution is inherently limited by the finite window length used in the Fourier transform. In the present case, the 100 fs window implies that spectral estimates are effectively averaged over this timescale, preventing a fully resolved description of faster energy redistribution processes.\\
-To overcome this limitation, we analyze the time evolution of modal temperatures, which are defined from the instantaneous kinetic energy projections and therefore provide a frame-resolved characterization of the energy flow between different dynamical sectors.
-
-
+To overcome this limitation, we analyze the time evolution of modal temperatures, which are defined from the instantaneous kinetic energy projections and therefore provide a frame-resolved characterization of the energy flow between different dynamical sectors.\\
+The characteristic relaxation times extracted from the bi-exponential fits are
+summarized in Fig.~\ref{fig:temps_all}. A clear hierarchy of energy
+redistribution timescales emerges across the three phases: for the excited O–H stretching mode, the dominant relaxation occurs on a sub-picosecond timescale and exhibits a marked phase dependence: $\tau_1 \approx 280\,\mathrm{fs}$ in liquid water, $\approx 220\,\mathrm{fs}$ in ice~IX, and $\approx 160\,\mathrm{fs}$ in ice~Ih. This indicates that the efficiency of the initial energy transfer from the excited stretching vibration to the surrounding network is strongly influenced by the hydrogen-bond topology.
 
 \section{Conclusions}
 
 
-\newpage
+\clearpage
 
 \bibliography{bibliografia}
 
