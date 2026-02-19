@@ -1,23 +1,28 @@
 from . import (
     c_parser,
+    exyz2gpumd,
     lmp2gpumd,
+    rdf,
     spectral,
     temps,
-    temps_numba_parallel,
     unwrap_coords,
     wignerEXC,
     wignerEXC2B,
-    rdf,
-    exyz2gpumd,
     writeGPUMDdump,
 )
+from .exyz2gpumd import read_exyz, write_gpumd
+from .rdf import (
+    compute_I2,
+    compute_R1,
+    compute_rdf,
+    propagate_I2_error,
+    propagate_R1_error,
+)
+from .spectral import calculateVACFgroup, calculateVDOS
 
 # Expose main functions for better IntelliSense
 from .temps import analyzeTEMPS
-from .rdf import compute_rdf, compute_R1, compute_I2, propagate_R1_error, propagate_I2_error
-from .spectral import calculateVACFgroup, calculateVDOS
 from .unwrap_coords import unwrap_coords as unwrap_coordinates
-from .exyz2gpumd import read_exyz, write_gpumd
 from .writeGPUMDdump import writeXYZ
 
 __all__ = [
@@ -29,7 +34,6 @@ __all__ = [
     "lmp2gpumd",
     "c_parser",
     "temps",
-    "temps_numba_parallel",
     "rdf",
     "exyz2gpumd",
     "writeGPUMDdump",
